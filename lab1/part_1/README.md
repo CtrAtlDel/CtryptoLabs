@@ -19,7 +19,7 @@
 
 Запуск утилиты:
 ```shell
-hash_gen.py [-e ENCODING] [-f HASH_FUNCTIONS] [-n NUMBER_OF_WORDS] [-o OUTPUT_FILE] 
+hash_gen.py [-e ENCODING] [-f HASH_FUNCTIONS] [-n NUMBER_OF_WORDS] [-o OUTPUT_FILE] file n
 ```
 Опции для утилиты:
     - '-e' кодировка (см поддерживаемы кодировки) 
