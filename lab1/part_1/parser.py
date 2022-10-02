@@ -2,6 +2,8 @@ import argparse
 from encoding import Encoding
 from hash_functions import HashFunctions
 
+size_of_string_begin = 10 # Минимальный размер строки
+size_of_string_end = 15 # максимальный размер строк
 
 def get_parser():
     parser = argparse.ArgumentParser()
