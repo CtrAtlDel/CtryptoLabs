@@ -7,11 +7,11 @@ import (
 )
 
 func main() {
-	inputPath := flag.String("input", "0", "input file path")
-	outPath := flag.String("output", "", "output file path")
+	inputPath := flag.String("input", "./", "input file path")
+	outPath := flag.String("output", "./", "output file path")
 	encoding := flag.String("e", "UTF-16-LE", "encoding for passwords")
 	hashFunction := flag.String("hash", "SHA-256", "encoding for file")
-	wordCounter := flag.Int("n", 0, "count of words in out file")
+	wordCounter := flag.Int("n", 1, "count of words in out file")
 	flag.Parse()
 	fmt.Println(*inputPath)
 	fmt.Println(*outPath)
