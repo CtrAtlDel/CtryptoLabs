@@ -1,4 +1,4 @@
-package encodings
+package stuff
 
 type Encodings string
 
