@@ -16,8 +16,9 @@ func main() {
 	wordCounter := flag.Int("n", 1, "count of words in out file")
 	flag.Parse()
 	checkArgs(*hashFunction, *encoding)
-	algorythm.Algorythm(*inputPath, *outPath, *hashFunction,
-		*hashFunction, *wordCounter)
+	algorythm.Algorythm(*inputPath, *outPath,
+		*hashFunction, stuff.Encodings(*encoding), *wordCounter)
+
 }
 
 func checkArgs(hf string, enc string) {

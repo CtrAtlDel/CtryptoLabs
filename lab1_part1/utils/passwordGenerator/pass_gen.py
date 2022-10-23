@@ -4,7 +4,7 @@ import string
 number_of_password = 100_000 # Количество слов
 size_of_string_begin = 10 # Минимальный размер строки
 size_of_string_end = 15 # максимальный размер строк
-file_path = "./passwords.txt"
+file_path = "passwords.txt"
 
 def generate_random_str(length):
     letters = string.ascii_lowercase

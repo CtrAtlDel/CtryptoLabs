@@ -1,8 +1,7 @@
-package parser
+package utils
 
 import (
 	"flag"
-	"fmt"
 )
 
 type Parser struct {
@@ -13,7 +12,7 @@ type Parser struct {
 	WordCounter  int
 }
 
-func (p *Parser) Parser() *Parser {
+func (p *Parser) GetArgs() *Parser {
 	inputPath := flag.String("input", "./", "input file path")
 	outPath := flag.String("output", "./", "output file path")
 	encoding := flag.String("e", "UTF-16-LE", "encoding for passwords")
@@ -25,6 +24,5 @@ func (p *Parser) Parser() *Parser {
 	p.Encoding = *encoding
 	p.HashFunction = *hashFunction
 	p.WordCounter = *wordCounter
-	fmt.Println(p.WordCounter)
 	return p
 }
