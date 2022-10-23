@@ -18,7 +18,6 @@ func main() {
 	checkArgs(*hashFunction, *encoding)
 	algorythm.Algorythm(*inputPath, *outPath,
 		*hashFunction, stuff.Encodings(*encoding), *wordCounter)
-
 }
 
 func checkArgs(hf string, enc string) {

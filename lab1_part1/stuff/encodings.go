@@ -1,9 +1,8 @@
 package stuff
 
 import (
+	"golang.org/x/text/encoding"
 	"golang.org/x/text/encoding/unicode"
-	"golang.org/x/text/transform"
-	"unicode/utf8"
 )
 
 type Encodings string
@@ -29,24 +28,12 @@ func CheckEncodings(enc Encodings) bool {
 	return false
 }
 
-func GetStringInEncode(str string, enc Encodings) string {
+func GetStringInEncode(enc Encodings) *encoding.Encoder {
 	switch enc {
-	case Ascii:
-		some := make([]byte, utf8.RuneCountInString(str))
-		i := 0
-		for _, r := range str {
-			some[i] = byte(r)
-			i++
-		}
-		return string(some)
 	case Utf16le:
-		result, _, _ := transform.Bytes(unicode.UTF16(unicode.LittleEndian,
-			unicode.IgnoreBOM).NewEncoder(), []byte(str))
-		return string(result)
+		return unicode.UTF16(unicode.LittleEndian, unicode.IgnoreBOM).NewEncoder()
 	case Utf16be:
-		result, _, _ := transform.Bytes(unicode.UTF16(unicode.BigEndian,
-			unicode.IgnoreBOM).NewEncoder(), []byte(str))
-		return string(result)
+		return unicode.UTF16(unicode.BigEndian, unicode.IgnoreBOM).NewEncoder()
 	}
-	return str
+	return unicode.UTF8.NewEncoder()
 }
