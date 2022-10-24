@@ -1,8 +1,9 @@
 from email import parser
 import multiprocessing
-from main import create_hash
 from parser import get_parser
 from multiprocessing.dummy import Pool
+
+from part_2.hash_functions import HashFunctions
 
 parser = get_parser()
 args = parser.parse_args()
@@ -17,15 +18,15 @@ THREADS = multiprocessing.cpu_count()
 
 found_passwords = []
 
-def create_hash(str):
-    hash_obj = hash_functions.get_hash_object()
+def create_hashs(str):
+    hash_obj = HashFunctions.get_hash_object()
     hash_obj.update(str.encode(encoding=encoding))
     return hash_obj.hexdigest()
 
 def thread(hashed_passwords, chunk_of_dict):
     local_dict = dict()
     for word in chunk_of_dict:
-        hashed_word = create_hash(word)
+        hashed_word = create_hashs(word)
         matches = [hash for hash in hashed_passwords if hashed_word == hash]
         if (len(matches) != 0):
             local_dict[word] = matches
