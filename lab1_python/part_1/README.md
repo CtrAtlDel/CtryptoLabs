@@ -19,7 +19,12 @@
 
 Запуск утилиты:
 ```shell
-hash_gen.py [-e ENCODING] [-f HASH_FUNCTIONS] [-n NUMBER_OF_WORDS] [-o OUTPUT_FILE] file n
+$ hash_gen.py [-e ENCODING] [-f HASH_FUNCTIONS] [-n NUMBER_OF_WORDS] [-o OUTPUT_FILE] file n
+```
+
+Пример запуска утилиты:
+```shell
+$  python3 main.py -f=sha256 -e=utf8 -o=./output.txt --file=./input.txt -n=2
 ```
 Опции для утилиты:
     - '-e' кодировка (см поддерживаемы кодировки) 
