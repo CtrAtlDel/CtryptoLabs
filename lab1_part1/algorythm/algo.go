@@ -44,7 +44,7 @@ func Algorythm(inputPath, outPath, hf string, enc stuff.Encodings, counter int) 
 			byteLine := getByte(hashFunc, encode, line)
 			outputFile.WriteString(string(byteLine) + "\n")
 		} else {
-			outputFile.WriteString(getRandomStr())
+			//outputFile.WriteString(getRandomStr())
 		}
 		i++
 	}

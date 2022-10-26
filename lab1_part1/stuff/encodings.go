@@ -16,8 +16,8 @@ const (
 
 func CheckEncodings(enc Encodings) bool {
 	switch enc {
-	case Ascii:
-		return true
+	//case Ascii:
+	//	return true
 	case Utf8:
 		return true
 	case Utf16le:
