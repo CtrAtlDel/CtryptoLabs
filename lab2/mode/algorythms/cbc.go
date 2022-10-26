@@ -1,9 +1,11 @@
 package algorythms
 
-func EncryptionCbc() {
+import "os"
+
+func EncryptionCbc(key, initVector string, file *os.File) {
 
 }
 
-func DecrtyptionCbc() {
+func DecrtyptionCbc(key, initVector string, file *os.File) {
 
 }

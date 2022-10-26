@@ -1,9 +1,11 @@
 package algorythms
 
-func EncryptionEcb() {
+import "os"
+
+func EncryptionEcb(key, initVector string, file *os.File) {
 
 }
 
-func DecrtyptionEcb() {
+func DecrtyptionEcb(key, initVector string, file *os.File) {
 
 }
