@@ -6,6 +6,6 @@ func EncryptionCbc(key, initVector string, file *os.File) {
 
 }
 
-func DecrtyptionCbc(key, initVector string, file *os.File) {
+func DecryptionCbc(key, initVector string, file *os.File) {
 
 }
