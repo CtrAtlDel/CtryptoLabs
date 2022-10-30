@@ -2,13 +2,12 @@ package utils
 
 import (
 	"lab2/mode"
-	"math"
 )
 
-func GetBlocks(str string) [][]byte {
+func GetBlocks(str string) [][]byte { //without padding
 	dataArray := []byte(str)
 	data := dataArray[:] //slice
-	numberOfBlocks := int(math.Ceil(float64(len(data) / mode.BlockSize)))
+	numberOfBlocks := len(data) / mode.BlockSize
 	result := make([][]byte, numberOfBlocks)
 	var begin, end int
 	for i := 0; i < numberOfBlocks; i++ {
