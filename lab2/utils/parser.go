@@ -27,3 +27,10 @@ func checkInitVector(initVector string) {
 		os.Exit(1)
 	}
 }
+
+func checkKey(key []byte) {
+	if len(key) != 4 {
+		fmt.Println("Key size is not 32 bits...")
+		os.Exit(1)
+	}
+}

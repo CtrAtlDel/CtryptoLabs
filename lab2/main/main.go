@@ -1,9 +1,7 @@
 package main
 
-import (
-	"lab2/utils"
-)
+import u "lab2/utils"
 
 func main() {
-	utils.Menu(utils.Parser())
+	u.Menu(u.Parser())
 }

@@ -8,15 +8,15 @@ import (
 func Menu(key, mode, initVector, filePath string, encryption, decryption, debug bool) {
 	if encryption {
 		if mode == encrMode.Ecb {
-			algorythms.EncryptionEcb(key, initVector, ReadFile(filePath))
+			algorythms.EncryptionEcb([]byte(key), initVector, ReadFile(filePath), debug)
 		} else if mode == encrMode.Cbc {
-			algorythms.EncryptionCbc(key, initVector, ReadFile(filePath))
+			algorythms.EncryptionCbc([]byte(key), initVector, ReadFile(filePath), debug)
 		}
 	} else if decryption {
 		if mode == encrMode.Ecb {
-			algorythms.DecrtyptionEcb(key, initVector, ReadFile(filePath))
+			algorythms.DecryptionEcb([]byte(key), initVector, ReadFile(filePath), debug)
 		} else if mode == encrMode.Cbc {
-			algorythms.DecrtyptionCbc(key, initVector, ReadFile(filePath))
+			algorythms.DecryptionCbc([]byte(key), initVector, ReadFile(filePath), debug)
 		}
 	}
 }

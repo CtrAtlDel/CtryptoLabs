@@ -12,6 +12,11 @@ const (
 	Cbc = "cbc"
 )
 
+const (
+	BlockSize = 4 // 32 bits or 4 bytes
+	KeySize   = 4
+)
+
 func CheckMode(mode Mode) bool {
 	switch mode {
 	case Ecb:
