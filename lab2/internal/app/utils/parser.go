@@ -3,7 +3,7 @@ package utils
 import (
 	"flag"
 	"fmt"
-	encrMode "lab2/mode"
+	encrMode "CryptoLabs/lab2/internal/app/mode"
 	"os"
 )
 

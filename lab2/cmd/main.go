@@ -1,6 +1,6 @@
 package main
 
-import u "lab2/utils"
+import u "CryptoLabs/lab2/internal/app/utils"
 
 func main() {
 	u.Menu(u.Parser())

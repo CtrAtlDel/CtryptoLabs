@@ -1,10 +1,10 @@
 package algorythms
 
 import (
+	"CryptoLabs/lab2/internal/app/mode"
+	"CryptoLabs/lab2/internal/app/mode/keyGen"
 	"fmt"
 	"io"
-	"lab2/mode"
-	"lab2/mode/keyGen"
 	"log"
 	"os"
 )

@@ -1,8 +1,6 @@
 package utils
 
-import (
-	"lab2/mode"
-)
+import "lab2/internal/app/mode"
 
 func GetBlocks(str string) [][]byte { //without padding
 	dataArray := []byte(str)

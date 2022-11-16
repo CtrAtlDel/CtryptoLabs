@@ -1,8 +1,8 @@
 package utils
 
 import (
-	encrMode "lab2/mode"
-	"lab2/mode/algorythms"
+	"CryptoLabs/lab2/internal/app/mode/algorythms"
+	encrMode "lab2/internal/app/mode"
 )
 
 func Menu(key, mode, initVector, filePath string, encryption, decryption, debug bool) {
