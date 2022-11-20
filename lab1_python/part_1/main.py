@@ -1,4 +1,3 @@
-import hashlib
 import string
 import random
 from encoding import Encoding
@@ -16,7 +15,6 @@ encoding = arguments.encoding.value  # кодировка
 hash_functions = arguments.functions  # хеш функция
 number_of_str = arguments.number  # количество хеш значений в выходном файле
 file_path_out = arguments.output  # текстовый файл для записи информации
-
 
 
 def create_hash(str):
