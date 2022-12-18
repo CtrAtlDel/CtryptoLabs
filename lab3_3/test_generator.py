@@ -22,7 +22,7 @@ parser.add_argument('-a', '--algorithm', action='store', required=True,
                     choices=['3des', 'aes-128', 'aes-192', 'aes-256'])
 
 
-def get_key_nonce(passwd, key_size, hmac_type):
+def get_key_nonce(passwd, hmac_type, key_size):
     custom_nonce = get_random.gen_nonce()
     if hmac_type == 'sha1':
         type_hmac = custom_hmac.HashType.SHA1
@@ -33,17 +33,18 @@ def get_key_nonce(passwd, key_size, hmac_type):
 
 
 args = parser.parse_args()
-password = args.pas
+password = args.password
 algorithm = args.algorithm
 hsh = args.hash
 
 if len(password) != 8:
     raise Exception('Incorrect length password')
 
+pwd = password
 password = bytearray.fromhex(password)
 key, nonce = get_key_nonce(password, hsh, ALGO_NUMBER[algorithm])
 if algorithm == '3des':
     encrpt, iv = cipher.encrypt_3des(key, CONST_WORLDS)
 else:
     encrpt, iv = cipher.encrypt_aes(key, CONST_WORLDS)
-file_worker.write_file(encrpt, algorithm, hsh, password, iv, nonce)
+file_worker.write_file(encrpt, algorithm, hsh, pwd, iv, nonce)

@@ -5,7 +5,6 @@ parser.add_argument('-v', '--version', action='version', version='%(prog)s 1.0')
 parser.add_argument('file', type=str, action='store', help='file with text')
 
 args = parser.parse_args()
-version = args.version
 file = args.file
 
 params = str(file).split('_')
