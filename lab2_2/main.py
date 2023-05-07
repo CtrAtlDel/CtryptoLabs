@@ -29,51 +29,30 @@ def rotate_right(x, amount):
     x &= 0xFFFFFFFF
     return ((x >> amount) | (x << (32 - amount)))
 
-
 def create_chunk(message):
-    message = bytearray(message)
-    orig_len_in_bits = (8 * len(message)) & 0xffffffffffffffff
-    message.append(0x80)
-    while len(message) % 64 != 56:
-        message.append(0)
-    message += orig_len_in_bits.to_bytes(8, byteorder='little')
-    chunk = message[0:64]
-    return chunk
+    message += b'\x80'
+    message_len_bits = (8 * len(message)) & 0xffffffffffffffff
+    padding_len = (64 - (len(message) % 64)) % 64
+    padding = b'\x00' * padding_len
+    return message + padding + message_len_bits.to_bytes(8, byteorder='little')
 
 
 def md5_rollback(hash, till_number, message):
-    a, b, c, d = [hash[:4], hash[4:8], hash[8:12], hash[12:]]
+    a, b, c, d = [int.from_bytes(hash[i:i+4], byteorder='little') for i in range(0, 16, 4)]
 
-    a = (int.from_bytes(a, byteorder='little') -
-         init_values[0]) & 0xFFFFFFFF
-    b = (int.from_bytes(b, byteorder='little') -
-         init_values[1]) & 0xFFFFFFFF
-    c = (int.from_bytes(c, byteorder='little') -
-         init_values[2]) & 0xFFFFFFFF
-    d = (int.from_bytes(d, byteorder='little') -
-         init_values[3]) & 0xFFFFFFFF
+    a, b, c, d = (a - init_values[0]) & 0xFFFFFFFF, (b - init_values[1]) & 0xFFFFFFFF, \
+                 (c - init_values[2]) & 0xFFFFFFFF, (d - init_values[3]) & 0xFFFFFFFF
 
     chunk = create_chunk(message)
 
-    for i in range(63, till_number+3, -1):  # begins calculate from Q_59
-        from_rotate = rotate_right(b - c, rotate_amounts[i])
-        f = functions[i](c, d, a)
+    for i in range(63, till_number + 2, -1):
         g = functions_index[i](i)
         ch = chunk[4 * g:4 * g + 4]
-        previous_a = ((from_rotate - f) -
-                      constants[i]) - int.from_bytes(ch, byteorder='little') & 0xFFFFFFFF
-        a, b, c, d = previous_a, c, d, a
-
-        a &= 0xFFFFFFFF
-        b &= 0xFFFFFFFF
-        c &= 0xFFFFFFFF
-        d &= 0xFFFFFFFF
-
-    a &= 0xFFFFFFFF
-    b &= 0xFFFFFFFF
-    c &= 0xFFFFFFFF
-    d &= 0xFFFFFFFF
-
+        a, b, c, d = (d, a, b, c)
+        f = functions[i](c, d, a)
+        from_rotate = rotate_right(b - c, rotate_amounts[i])
+        a = ((from_rotate - f - constants[i] - int.from_bytes(ch, byteorder='little')) & 0xFFFFFFFF)
+        
     return sum(x << (32 * i) for i, x in enumerate([a, b, c, d])).to_bytes(16, 'little')
 
 
